@@ -1,0 +1,31 @@
+{% extends "date/base.html" %}
+
+{% block title %}
+Day Predictor
+{% endblock  %}
+
+{% block body %}
+<div class="container fs-3">
+    <h1>Date Predictor</h1>
+    <p>Are you interested in knowing the day in which historical events happened, or finding out the day of a future date? You can find that out from here!</p>
+</div>
+<br>
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <label for="date" class="fs-3">Enter the date:</label>
+        <input type="text" class="form-control" name="input_date" placeholder="example:15/08/1947">
+    </div>
+</form>
+<br>
+<div class="container">
+    {% if day %}
+    <div class="col-md-6 col-md-offset-3">
+      <p>{{ input_date }} is a {{ day }}</p>
+    </div>
+    {% endif %}
+</div>
+<div class="container">
+    <a href="{% url 'index' %}">Go back</a>
+</div>
+{% endblock  %}

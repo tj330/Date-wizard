@@ -1,0 +1,35 @@
+{% extends "date/base.html" %}
+
+{% block title %}
+Goal Setter
+{% endblock  %}
+
+{% block body %}
+<div class="container fs-3">
+    <h1>Goal Setter</h1>
+    <p>Here you can determine the number of days remaining for a deadline and set the goal accordingly.</p>
+</div>
+<br>
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <label for="date" class="fs-3">Enter the Goal:</label>
+        <input type="text" class="form-control" name="input_goal" placeholder="example:Learn Django">
+        <label for="date" class="fs-3">Enter the Deadline:</label>
+        <input type="text" class="form-control" name="input_deadline" placeholder="example:31/12/2024">
+
+        <input type="submit" class="btn btn-outline-primary mt-3">
+    </div>
+</form>
+<br>
+<div class="container">
+    {% if input_goal and remaining_days %}
+    <div class="col-md-6 col-md-offset-3">
+      <p class="fs-5">Time remainig for goal {{ input_goal}} is  {{ remaining_days }}</p>
+    </div>
+    {% endif %}
+</div>
+<div class="container">
+    <a href="{% url 'index' %}">Go back</a>
+</div>
+{% endblock  %}
